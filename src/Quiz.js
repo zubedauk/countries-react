@@ -50,6 +50,7 @@ const Quiz=(prop)=>{
         setMsg(null)
         setCounter(counter+1)
         randomCountry=Data[Math.floor((Math.random())*Data.length)].name
+        document.getElementById("next").disabled=true;
        // setCountry(randomCountry)
        let arr=[],arr1=[];
         arr=Data.filter(function(obj){
@@ -72,22 +73,29 @@ const Quiz=(prop)=>{
       
        setCap(arr[0].capital)
        setCapitals(arr1)
-        
+    
        
     }
     //////////////common between this and quizrow
     
     function answer(value){
-    
-        if(count===25){
-            if(total>250){
+
+        document.getElementById("next").disabled=false;
+        if(counter===25){//no of questions
+            
+            if(total>=125){//passing percentage out of 250
                 setMsg("congratulation:You have passed test:) ")
-                return
+                document.getElementById("next").disabled=true;
             }else{
-                setMsg("You have failed test:(.try it again")
-                return
+                setMsg("You have failed test:(.try it next time")
+                document.getElementById("next").disabled=true;
             }
+            count=0
+          
+           //
+            return
         }
+        else{
         if(value==="right"){
             total=total+10;
             setMarks(total)
@@ -99,7 +107,7 @@ const Quiz=(prop)=>{
             setMsg("Oops:(.the answer is wrong.the correct answer is "+cap)
             setCall(null);
         }
-           
+    }    
 
     }
     
@@ -108,6 +116,7 @@ const Quiz=(prop)=>{
     function shuffle(capitals){
        
        // alert(obj[Math.floor((Math.random())*obj.length)])
+       
         return(
             capitals.map(function(obj){
                 
@@ -148,7 +157,7 @@ const Quiz=(prop)=>{
     </div>
     <div id="quizRow" style={{width:'100%',marginTop:'1rem',display:'flex',justifyContent:'center'}}>
         {shuffle(capitals)}
-        <button onClick={extractCountry} style={{fontWeight:'bold',marginLeft:'1rem',width:'6rem','height':'2.5rem'}}>Next</button>
+        <button id="next" onClick={extractCountry} style={{fontWeight:'bold',marginLeft:'1rem',width:'6rem','height':'2.5rem'}}>Next</button>
     </div>
     </>
     
