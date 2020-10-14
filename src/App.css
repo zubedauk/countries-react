@@ -4,8 +4,7 @@
   margin: 0px;
   padding: 0px;
 }
-/* Dark Blue (Dark Mode Elements): hsl(209, 23%, 22%)
-- Very Dark Blue (Dark Mode Background): hsl(207, 26%, 17%) */
+
 .App {
  
   font-family: 'Nunito Sans';
@@ -21,12 +20,12 @@
 }
 .App-header {
   background-color:hsl(209, 23%, 22%);
-  
   width:100%;
   height:3rem;
   display: flex;
   align-items: center;
   flex-direction: row;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
   font-weight: 300;
@@ -47,9 +46,56 @@ width:90%;
  
  
 }
+/* .search input[text]{
+background-color: :hsl(209, 23%, 22%);
+} */
+#countryDetailClick{
+  margin-top: 1rem;
+  width:auto;
+  height:100vh;
+  display:grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  column-gap:1rem;
+  row-gap: 1rem;
+}
+#region{
+  margin-top: 1rem;
+  width:auto;
+  height:100vh;
+  
+  display:grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  column-gap:1rem;
+  row-gap: 1rem;
+ 
+}
+#capitals{
+  margin-top: 2rem;
+  font-size: medium;
+  background-color:white;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
 
+}
+#quiz{
+  padding:1rem;
+  color:red;
+  background-color: sandybrown;
+  margin-top: 1rem;
+  width:70%;
+  border:1px solid wheat;
+  height:auto;
+  display:none;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  align-items: center; 
+  box-shadow:5px 5px 5px white
+  
 
-.countries{
+}
+#countries{
   margin-top: 1rem;
   width:auto;
   height:100vh;
@@ -67,6 +113,9 @@ width:90%;
   height:18rem;
   display:flex;
   flex-direction: column;
+}
+.country:hover{
+  cursor: pointer;
 }
 .country img{
   width:10rem;

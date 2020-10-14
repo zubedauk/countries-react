@@ -1,23 +1,25 @@
 import React from 'react';
 import Data from './countriesAll.json'
-
+import EachRow from './EachRow'
 //import selectedCountries from './selectedCountries'
 
 const Countries=(prop)=>{
+ //get country name from EachRow.js and send back to App.js
+ function getBackFromRow(countryName){
+     //alert("yes got it"+countryName)
+     prop.selectedCountryFunction(countryName);
+     
+     //document.getElementsByClassName("countries")[0].innerHtml=""
+ }
+///////////////////////////extract all data
 function extract(Data){
+  
    return (Data.map(function(obj){
-        return <div className="country">
-                <img alt="flag" src={obj.flag} />
-                <div style={countryDetail}>
-                    <h1 style={{margin:'0.5rem',fontWeight:'800',fontSize:'1.3rem'}}>{obj.name}</h1>
-                    <span style={ cssDetailItem}>Population:<span style={cssDetailValue}>{obj.population}</span></span>
-                    <span style={ cssDetailItem}>Capital:<span style={cssDetailValue}>{obj.capital}</span></span>
-                </div>
-                
-        </div>
+    
+        return(<EachRow obj={obj} goBackFromRow={getBackFromRow} lightColour1={prop.lightColour} textColour1={prop.textColour}/>)
     }))
 }
-/////////////////////
+///////////////////////////////////////extract Search data
 function extract1(Data){
    
     let  nameList=Data.filter(function(obj){
@@ -26,6 +28,7 @@ function extract1(Data){
     
     if(nameList.length===0){
        return(
+       
         extract(Data)
       // document.getElementsByClassName("countries")[0].innerHTML=""; 
        )
@@ -33,59 +36,22 @@ function extract1(Data){
     }
     else{
         return(
+            
         extract(nameList)
        // document.getElementsByClassName("countries")[0].innerHTML="";
         )
     }
     
 }
-//////////////////
- const countryDetail={
-        display:'flex',
-        flexDirection:'column',
-        marginLeft:'0.5rem',
-        color:'black'
+/////////////////////////////////////////////main
 
-    }
-    const cssDetailValue={
-        color:'hsl(0, 0%, 52%)',
-        fontWeight:'300'
-    }
-    const cssDetailItem={
-        marginTop:'0.5rem',
-        color:'white',
-        fontWeight:'600',
-        fontSize:'1rem'
-    }
-   
-    ///////////////////from data base
-    
-     if(prop.in==null){
-    return(
-        <>
-       
-        <div className="countries">
-        {
-           extract(Data)
-        }
-       </div>
-       </>
-    )
-     }else{
-         return(
-            <>
-             <span className="countries">
-             {
-                 extract1(Data)
-             }
-             </span>
             
-             
-             
-             </>
-         
-        
-         )
+     if(prop.in==null){
+       // alert(prop.lightColour)
+         return(extract(Data))
+     }else{
+        // alert(prop.lightColour)
+        return(extract1(Data) )
      }
     
 }
