@@ -43,12 +43,13 @@ const Quiz=(prop)=>{
     const [marks,setMarks]=useState(0)
     const [call,setCall]=useState("start");
     const [counter,setCounter]=useState(1)
-
+    
     function extractCountry(){
         let randomCapitals=0;
         setCall("start")
         setMsg(null)
-        setCounter(counter+1)
+       setCounter(counter+1)
+       
         randomCountry=Data[Math.floor((Math.random())*Data.length)].name
         document.getElementById("next").disabled=true;
        // setCountry(randomCountry)
@@ -76,6 +77,16 @@ const Quiz=(prop)=>{
     
        
     }
+    ////////////////////start agian
+    function startAgain(event){
+        count=0;
+        total=0;
+        setMarks(0)
+        setMsg(null)
+        setCounter(1)
+        document.getElementById("next").style.display="block"
+        document.getElementById("startAgain").style.display="none"
+    }
     //////////////common between this and quizrow
     
     function answer(value){
@@ -85,13 +96,15 @@ const Quiz=(prop)=>{
             
             if(total>=125){//passing percentage out of 250
                 setMsg("congratulation:You have passed test:) ")
-                document.getElementById("next").disabled=true;
+                //document.getElementById("next").disabled=true;
             }else{
                 setMsg("You have failed test:(.try it next time")
-                document.getElementById("next").disabled=true;
+                //document.getElementById("next").disabled=true;
             }
+
             count=0
-          
+            document.getElementById("next").style.display="none"
+            document.getElementById("startAgain").style.display="block"
            //
             return
         }
@@ -157,7 +170,9 @@ const Quiz=(prop)=>{
     </div>
     <div id="quizRow" style={{width:'100%',marginTop:'1rem',display:'flex',justifyContent:'center'}}>
         {shuffle(capitals)}
-        <button id="next" onClick={extractCountry} style={{fontWeight:'bold',marginLeft:'1rem',width:'6rem','height':'2.5rem'}}>Next</button>
+        <button id="next" onClick={extractCountry} style={{display:'block',fontWeight:'bold',marginLeft:'1rem',width:'6rem','height':'2.5rem'}}>Next</button>
+        <button id="startAgain" onClick={startAgain} style={{display:'none',fontWeight:'bold',marginLeft:'1rem',width:'6rem','height':'2.5rem'}}>Start again</button>
+
     </div>
     </>
     
